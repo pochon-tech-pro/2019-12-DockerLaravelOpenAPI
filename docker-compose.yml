@@ -1,0 +1,17 @@
+version: '3.4'
+volumes:
+  mysql_data: { driver: "local" }
+services:
+  generator:
+    build: ./generator
+    volumes:
+      - .:/app
+    tty: true
+    command: sh
+
+  www:
+    build: ./www
+    volumes:
+    - ./www:/var/www
+    ports:
+      - 80:80

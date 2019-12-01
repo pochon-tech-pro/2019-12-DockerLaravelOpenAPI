@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+  title: Task API
+  version: 0.0.1
+servers:
+  - url: http://localhost
+    description: Laravel Server
+tags:
+  - name: Task
+components:  
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      description: Credentials or access token for API
+security:
+- Bearer: []
+paths:
+  /api/task:
+    get:
+      tags: [ "Task" ]
+      summary: Show Task List.
+      description: Show Task List.
+      operationId: listTask
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags: [ "Task" ]
+      summary: Create Task One 
+      operationId: createTask
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                sort:
+                  type: integer
+      responses:
+        '200':
+          description: Successful response
+  /api/task/{tid}:
+    get:
+      tags: [ "Task" ]
+      summary: Show Task One.
+      description: Show Task One.
+      operationId: showTask
+      parameters:
+        - name: tid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+    put:
+      tags: [ "Task" ]
+      summary: Update Task One.
+      operationId: updateTask
+      description: Update Task One.
+      parameters:
+        - name: tid
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                sort:
+                  type: integer
+      responses:
+        '200':
+          description: Successful response
+    delete:
+      tags: [ "Task" ]
+      summary: Delete Task One.
+      operationId: deleteTask
+      description: Delete Task One.
+      parameters:
+        - name: tid
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
